@@ -22,7 +22,7 @@ cvs up -PAd
 if [ -n "$(git status -z --porcelain | egrep -zv '^?? CVS/Entries$')" ]; then
 	echo "Some changes present, commiting."
 	git add .
-	git commit -m "Update from openbsd ($(date -u '+%Y-%d-%m %H:%M:%S') UTC)"
+	git commit -m "Update from openbsd ($(date -u '+%Y-%m-%d %H:%M:%S') UTC)"
 else
 	echo "No new changes detected"
 	git checkout -- CVS/Entries
