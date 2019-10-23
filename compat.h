@@ -3,7 +3,7 @@
 
 #include <openssl/rsa.h>
 
-#if OPENSSL_VERSION_NUMBER < 0x10100000L
+#if OPENSSL_VERSION_NUMBER < 0x10100000L || defined(LIBRESSL_VERSION_NUMBER)
 # define COMPAT_OPENSSL_get_n(r) (r->n)
 # define COMPAT_OPENSSL_get_e(r) (r->e)
 # define COMPAT_OPENSSL_pkey_type(pkey) (EVP_PKEY_type(pkey->type))
