@@ -1,4 +1,4 @@
-/*	$Id: http.c,v 1.28 2019/07/12 15:01:33 florian Exp $ */
+/*	$Id: http.c,v 1.29 2020/01/20 22:10:27 sthen Exp $ */
 /*
  * Copyright (c) 2016 Kristaps Dzonsons <kristaps@bsd.lv>
  *
