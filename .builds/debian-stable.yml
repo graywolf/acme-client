@@ -1,0 +1,23 @@
+image: debian/stable
+secrets:
+  - a9acb8e7-4e6a-45fd-be82-569c31b5fae7
+sources:
+  - git@git.sr.ht:~graywolf/acme-client-portable
+packages:
+  - autoconf
+  - automake
+  - bison
+  - gcc
+  - libbsd-dev
+  - libssl-dev
+  - make
+tasks:
+  - autoreconf: |
+      cd acme-client-portable
+      autoreconf -i
+  - configure: |
+      cd acme-client-portable
+      ./configure
+  - make: |
+      cd acme-client-portable
+      make
