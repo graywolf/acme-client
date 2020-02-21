@@ -1,4 +1,4 @@
-/*	$Id: main.c,v 1.52 2019/06/17 12:42:52 florian Exp $ */
+/*	$Id: main.c,v 1.53 2020/02/07 14:34:15 florian Exp $ */
 /*
  * Copyright (c) 2016 Kristaps Dzonsons <kristaps@bsd.lv>
  *
@@ -33,6 +33,9 @@
 #define WWW_DIR "/var/www/acme"
 #define CONF_FILE "/etc/acme-client.conf"
 
+int		 verbose;
+enum comp 	 proccomp;
+
 int
 main(int argc, char *argv[])
 {
@@ -47,8 +50,6 @@ main(int argc, char *argv[])
 	int		  c, rc, revocate = 0;
 	int		  popts = 0;
 	pid_t		  pids[COMP__MAX];
-	extern int	  verbose;
-	extern enum comp  proccomp;
 	size_t		  i, altsz, ne;
 
 	struct acme_conf	*conf = NULL;
