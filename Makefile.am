@@ -11,11 +11,9 @@ AM_CFLAGS = \
 	-Wstrict-prototypes \
 	-Wundef \
 	-Wunused \
-	-flto \
 	@BSD_INCLUDES@ \
 	@OPENSSL_INCLUDES@
 AM_LDFLAGS = \
-	-flto \
 	@BSD_LDFLAGS@ \
 	@OPENSSL_LDFLAGS@
 
