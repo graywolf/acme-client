@@ -27,7 +27,6 @@ acme_client_SOURCES = \
 	util.c
 
 acme_client_CFLAGS = \
-	@BSD_INCLUDES@ \
 	@OPENSSL_INCLUDES@
 if DEVEL_MODE
 acme_client_CFLAGS += \
@@ -35,11 +34,9 @@ acme_client_CFLAGS += \
 endif
 
 acme_client_LDFLAGS = \
-	@BSD_LDFLAGS@ \
 	@OPENSSL_LDFLAGS@
 
 acme_client_LDADD = \
-	@BSD_LIBS@ \
 	@OPENSSL_LIBS@
 
 dist_man_MANS = \

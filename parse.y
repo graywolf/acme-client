@@ -27,7 +27,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <ctype.h>
-#include <err.h>
 #include <errno.h>
 #include <limits.h>
 #include <stdarg.h>
@@ -36,10 +35,9 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <bsd/stdlib.h>
-#include <bsd/sys/queue.h>
-
 #include "config.h"
+#define ACMECLIENT_PARSER 1
+#include "compat.h"
 #include "parse.h"
 #include "extern.h"
 

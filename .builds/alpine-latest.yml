@@ -8,7 +8,6 @@ packages:
   - automake
   - bison
   - build-base
-  - libbsd-dev
   - openssl-dev
 tasks:
   - autoreconf: |

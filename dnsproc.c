@@ -18,7 +18,6 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
-#include <err.h>
 #include <netdb.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,6 +25,7 @@
 #include <unistd.h>
 
 #include "config.h"
+#include "compat.h"
 #include "extern.h"
 
 struct	addr {

@@ -17,8 +17,6 @@
 #ifndef PARSE_H
 #define PARSE_H
 
-#include <sys/queue.h>
-
 #define AUTH_MAXLEN	120	/* max length of an authority_c name */
 #define DOMAIN_MAXLEN	255	/* max len of a domain name (rfc2181) */
 

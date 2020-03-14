@@ -9,6 +9,9 @@ AC_CONFIG_SRCDIR([fileproc.c])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_HEADERS([config.h])
 
+AC_CANONICAL_SYSTEM
+AC_CANONICAL_HOST
+
 AM_INIT_AUTOMAKE([-Wall -Werror foreign dist-xz])
 
 AC_PROG_CC
@@ -23,32 +26,22 @@ AC_PROG_YACC
 AC_CONFIG_MACRO_DIRS([m4])
 
 AX_CHECK_OPENSSL([], [AC_MSG_ERROR([Openssl not found.])])
-AX_CHECK_BSD([], [AC_MSG_ERROR([Libbsd not found.])])
 
 AC_FUNC_FORK
 AC_CHECK_FUNCS([pledge unveil])
-AC_REPLACE_FUNCS([reallocarray recallocarray])
-
-# Compiling with libbsd can cause this error on some systems:
-# #warning usage of non-standard #include <sys/cdefs.h> is deprecated [-Werror=cpp]
-# if so, compile with -Wno-cpp to make it pass
-AC_MSG_CHECKING([whether including bsd/stdlib.h is without warnings])
-save_CPPFLAGS="$CPPFLAGS"
-CPPFLAGS="$CPPFLAGS -Werror=cpp -Werror"
-AC_COMPILE_IFELSE(
-	[AC_LANG_SOURCE(
-		[[
-			#include <stdlib.h>
-			#include <bsd/stdlib.h>
-		]]
-	)],
-	[AC_MSG_RESULT([yes])],
-	[
-		AC_MSG_RESULT([no])
-		save_CPPFLAGS="$save_CPPFLAGS -Wno-cpp"
-	]
-)
-CPPFLAGS="$save_CPPFLAGS"
+AC_REPLACE_FUNCS([
+	asprintf
+	err
+	errx
+	reallocarray
+	recallocarray
+	strlcat
+	strtonum
+	vasprintf
+	vwarnx
+	warn
+	warnx
+])
 
 AX_ADD_CFLAG([-D_GNU_SOURCE=1])
 AX_ADD_CFLAG([-Wall])

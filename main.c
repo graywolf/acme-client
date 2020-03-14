@@ -18,7 +18,6 @@
 #include <sys/socket.h>
 
 #include <ctype.h>
-#include <err.h>
 #include <libgen.h>
 #include <stdarg.h>
 #include <stdio.h>
@@ -27,6 +26,7 @@
 #include <unistd.h>
 
 #include "config.h"
+#include "compat.h"
 #include "extern.h"
 #include "parse.h"
 

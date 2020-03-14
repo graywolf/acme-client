@@ -15,11 +15,11 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <err.h>
 #include <stdarg.h>
 #include <stdlib.h>
 
 #include "config.h"
+#include "compat.h"
 #include "extern.h"
 
 void

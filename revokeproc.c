@@ -17,7 +17,6 @@
 
 #include <assert.h>
 #include <ctype.h>
-#include <err.h>
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -30,6 +29,7 @@
 #include <openssl/err.h>
 
 #include "config.h"
+#include "compat.h"
 #include "extern.h"
 
 #define	RENEW_ALLOW (30 * 24 * 60 * 60)

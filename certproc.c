@@ -15,7 +15,6 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <err.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -27,6 +26,7 @@
 #include <openssl/err.h>
 
 #include "config.h"
+#include "compat.h"
 #include "extern.h"
 
 #define MARKER "-----END CERTIFICATE-----\n"
