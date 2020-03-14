@@ -38,6 +38,18 @@
 AU_ALIAS([CHECK_BSD], [AX_CHECK_BSD])
 AC_DEFUN([AX_CHECK_BSD], [
     found=false
+    skip_bsd=false
+    case "$host" in
+        *-*-aix*|*-*-os400*)
+            AC_MSG_CHECKING([AIX libbsd is not fd.o libbsd, skipping])
+            # libbsd is *NOT* fd.o libbsd! it's a gigantic footgun instead
+            skip_bsd=true
+            BSD_LIBS=""
+            BSD_INCLUDES=""
+            BSD_LDFLAGS=""
+            ;;
+    esac
+    if ! $skip_bsd; then
     AC_ARG_WITH([bsd],
         [AS_HELP_STRING([--with-bsd=DIR],
             [root of the bsd directory])],
@@ -119,6 +131,7 @@ AC_DEFUN([AX_CHECK_BSD], [
     CPPFLAGS="$save_CPPFLAGS"
     LDFLAGS="$save_LDFLAGS"
     LIBS="$save_LIBS"
+    fi
 
     AC_SUBST([BSD_INCLUDES])
     AC_SUBST([BSD_LIBS])

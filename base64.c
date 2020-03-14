@@ -15,7 +15,6 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-#include <err.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -24,6 +23,7 @@
 #include <openssl/buffer.h>
 
 #include "config.h"
+#include "compat.h"
 #include "extern.h"
 
 static int

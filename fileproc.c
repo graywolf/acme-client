@@ -17,7 +17,6 @@
 
 #include <sys/stat.h>
 
-#include <err.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <limits.h>
@@ -27,6 +26,7 @@
 #include <unistd.h>
 
 #include "config.h"
+#include "compat.h"
 #include "extern.h"
 
 static int

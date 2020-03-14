@@ -17,7 +17,6 @@
 
 #include <sys/stat.h>
 
-#include <err.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -29,7 +28,9 @@
 #include <openssl/x509.h>
 #include <openssl/x509v3.h>
 
+#ifndef _AIX
 #include <bsd/string.h>
+#endif
 
 #include "config.h"
 #include "compat.h"

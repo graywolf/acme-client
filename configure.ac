@@ -9,6 +9,9 @@ AC_CONFIG_SRCDIR([fileproc.c])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_HEADERS([config.h])
 
+AC_CANONICAL_SYSTEM
+AC_CANONICAL_HOST
+
 AM_INIT_AUTOMAKE([-Wall -Werror foreign dist-xz])
 
 AC_PROG_CC
@@ -27,7 +30,7 @@ AX_CHECK_BSD([], [AC_MSG_ERROR([Libbsd not found.])])
 
 AC_FUNC_FORK
 AC_CHECK_FUNCS([pledge unveil])
-AC_REPLACE_FUNCS([reallocarray recallocarray])
+AC_REPLACE_FUNCS([err errx warn warnx vwarnx asprintf vasprintf strlcat strtonum reallocarray recallocarray])
 
 # Compiling with libbsd can cause this error on some systems:
 # #warning usage of non-standard #include <sys/cdefs.h> is deprecated [-Werror=cpp]

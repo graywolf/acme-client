@@ -22,7 +22,6 @@
 #include <netinet/in.h>
 
 #include <ctype.h>
-#include <err.h>
 #include <limits.h>
 #include <netdb.h>
 #include <stdio.h>
