@@ -11,10 +11,8 @@ AM_CFLAGS = \
 	-Wstrict-prototypes \
 	-Wundef \
 	-Wunused \
-	@BSD_INCLUDES@ \
 	@OPENSSL_INCLUDES@
 AM_LDFLAGS = \
-	@BSD_LDFLAGS@ \
 	@OPENSSL_LDFLAGS@
 
 
@@ -46,7 +44,6 @@ acme_client_SOURCES = \
 	revokeproc.c \
 	util.c
 acme_client_LDADD = \
-	@BSD_LIBS@ \
 	@OPENSSL_LIBS@
 
 dist_man_MANS = \
