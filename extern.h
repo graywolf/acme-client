@@ -219,9 +219,17 @@ int		 netproc(int, int, int, int, int, int, int,
  * These just route to warnx according to the verbosity.
  */
 void		 dodbg(const char *, ...)
+#ifdef __GNUC__
 			__attribute__((format(printf, 1, 2)));
+#else
+			;
+#endif
 void		 doddbg(const char *, ...)
+#ifdef __GNUC__
 			__attribute__((format(printf, 1, 2)));
+#else
+			;
+#endif
 
 /*
  * Read and write things from the wire.
@@ -251,7 +259,7 @@ char		*base64buf_url(const char *, size_t);
  */
 struct jsmnn	*json_parse(const char *, size_t);
 void		 json_free(struct jsmnn *);
-int		 json_parse_response(struct jsmnn *);
+enum chngstatus	 json_parse_response(struct jsmnn *);
 void		 json_free_challenge(struct chng *);
 int		 json_parse_challenge(struct jsmnn *, struct chng *);
 void		 json_free_order(struct order *);

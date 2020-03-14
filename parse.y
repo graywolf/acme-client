@@ -59,8 +59,12 @@ int		 popfile(void);
 int		 yyparse(void);
 int		 yylex(void);
 int		 yyerror(const char *, ...)
+#ifdef __GNUC__
     __attribute__((__format__ (printf, 1, 2)))
     __attribute__((__nonnull__ (1)));
+#else
+    ;
+#endif
 int		 kw_cmp(const void *, const void *);
 int		 lookup(char *);
 int		 igetc(void);
