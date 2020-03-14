@@ -229,7 +229,6 @@ again:
 		if (host == NULL)
 			return -1;
 		goto again;
-		break;
 	default:
 		code = g->code;
 		break;
