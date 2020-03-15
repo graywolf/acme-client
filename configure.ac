@@ -50,5 +50,46 @@ AC_COMPILE_IFELSE(
 )
 CPPFLAGS="$save_CPPFLAGS"
 
+AX_ADD_CFLAG([-D_GNU_SOURCE=1])
+AX_ADD_CFLAG([-Wall])
+AX_ADD_CFLAG([-Wextra])
+AX_ADD_CFLAG([-Wformat])
+AX_ADD_CFLAG([-Wmissing-declarations])
+AX_ADD_CFLAG([-Wmissing-prototypes])
+AX_ADD_CFLAG([-Wpointer-arith])
+AX_ADD_CFLAG([-Wshadow])
+AX_ADD_CFLAG([-Wsign-compare])
+AX_ADD_CFLAG([-Wstrict-prototypes])
+AX_ADD_CFLAG([-Wundef])
+AX_ADD_CFLAG([-Wunused])
+AX_ADD_CFLAG([-Wvla])
+
+# Handle -flto in platform specific manner
+case "$host" in
+*solaris*)
+	# flto seems broken on solaris, so do not use it:
+	# https://github.com/graywolf/acme-client-portable/pull/5#issuecomment-599510762
+	;;
+*)
+	AX_ADD_CFLAG([-flto])
+	AX_ADD_LDFLAG([-flto])
+	;;
+esac
+
+# Platform specific CPPFLAGS
+case "$host" in
+*aix*|*os400*)
+	# malloc is different, workaround
+	CPPFLAGS="$CPPFLAGS -D_LINUX_SOURCE_COMPAT"
+	;;
+esac
+
+AC_ARG_ENABLE(
+	devel,
+	[  --enable-devel   Enable development compilation flags],
+	[AM_CONDITIONAL(DEVEL_MODE, test 0 -eq 0)],
+	[AM_CONDITIONAL(DEVEL_MODE, test 0 -ne 0)],
+)
+
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT

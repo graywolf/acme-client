@@ -1,25 +1,3 @@
-AM_CFLAGS = \
-	-D_GNU_SOURCE=1 \
-	-Wall \
-	-Werror \
-	-Wextra \
-	-Wmissing-declarations \
-	-Wmissing-prototypes \
-	-Wpointer-arith \
-	-Wshadow \
-	-Wsign-compare \
-	-Wstrict-prototypes \
-	-Wundef \
-	-Wunused \
-	-flto \
-	@BSD_INCLUDES@ \
-	@OPENSSL_INCLUDES@
-AM_LDFLAGS = \
-	-flto \
-	@BSD_LDFLAGS@ \
-	@OPENSSL_LDFLAGS@
-
-
 bin_PROGRAMS = acme-client
 
 acme_client_SOURCES = \
@@ -47,6 +25,19 @@ acme_client_SOURCES = \
 	parse.y \
 	revokeproc.c \
 	util.c
+
+acme_client_CFLAGS = \
+	@BSD_INCLUDES@ \
+	@OPENSSL_INCLUDES@
+if DEVEL_MODE
+acme_client_CFLAGS += \
+	-Werror
+endif
+
+acme_client_LDFLAGS = \
+	@BSD_LDFLAGS@ \
+	@OPENSSL_LDFLAGS@
+
 acme_client_LDADD = \
 	@BSD_LIBS@ \
 	@OPENSSL_LIBS@
