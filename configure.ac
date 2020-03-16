@@ -1,6 +1,6 @@
 AC_PREREQ([2.69])
 
-AC_INIT([acme-client], [0.2.7], [wolf@wolfsden.cz])
+AC_INIT([acme-client], [0.3.0], [wolf@wolfsden.cz])
 
 AC_CONFIG_SRCDIR([main.c])
 AC_CONFIG_SRCDIR([acctproc.c])
