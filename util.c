@@ -18,7 +18,6 @@
 #include <sys/wait.h>
 
 #include <assert.h>
-#include <err.h>
 #include <errno.h>
 #include <limits.h>
 #include <signal.h>
@@ -30,6 +29,7 @@
 #include <unistd.h>
 
 #include "config.h"
+#include "compat.h"
 #include "extern.h"
 
 static	volatile sig_atomic_t sig;

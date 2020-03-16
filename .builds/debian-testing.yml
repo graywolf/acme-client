@@ -8,7 +8,6 @@ packages:
   - automake
   - bison
   - gcc
-  - libbsd-dev
   - libssl-dev
   - make
 tasks:

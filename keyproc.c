@@ -17,7 +17,6 @@
 
 #include <sys/stat.h>
 
-#include <err.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,8 +27,6 @@
 #include <openssl/rand.h>
 #include <openssl/x509.h>
 #include <openssl/x509v3.h>
-
-#include <bsd/string.h>
 
 #include "config.h"
 #include "compat.h"

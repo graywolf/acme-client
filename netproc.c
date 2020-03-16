@@ -17,13 +17,13 @@
 
 #include <assert.h>
 #include <ctype.h>
-#include <err.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
 #include "config.h"
+#include "compat.h"
 #include "http.h"
 #include "extern.h"
 #include "parse.h"
@@ -229,7 +229,6 @@ again:
 		if (host == NULL)
 			return -1;
 		goto again;
-		break;
 	default:
 		code = g->code;
 		break;
