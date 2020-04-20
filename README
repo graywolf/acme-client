@@ -68,8 +68,8 @@ EXAMPLES
      A cron(8) job can renew the certificate as necessary.  On renewal,
      httpd(8) is reloaded:
 
-           0       *       *       *       *       sleep $((RANDOM \% 2048)) && \
-                   acme-client example.com && rcctl reload httpd
+           ~       *       *       *       *       acme-client example.com && \
+                   rcctl reload httpd
 
 SEE ALSO
      openssl(1), acme-client.conf(5), httpd.conf(5)
@@ -85,4 +85,4 @@ AUTHORS
      The acme-client utility was written by Kristaps Dzonsons
      <kristaps@bsd.lv>.
 
-BSD                              June 15, 2019                             BSD
+BSD                             April 15, 2020                             BSD
