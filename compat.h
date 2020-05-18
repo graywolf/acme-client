@@ -6,6 +6,8 @@
 
 #include "config.h"
 
+#include "compat_vis.h"
+
 /* HACK: OpenSSL symbols pollute parser */
 #ifndef ACMECLIENT_PARSER
 #include <openssl/rsa.h>

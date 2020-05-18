@@ -7,6 +7,8 @@ acme_client_SOURCES = \
 	chngproc.c \
 	compat.c \
 	compat.h \
+	compat_vis.c \
+	compat_vis.h \
 	dbg.c \
 	dnsproc.c \
 	extern.h \
