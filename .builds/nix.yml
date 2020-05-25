@@ -1,16 +1,9 @@
-image: alpine/edge
+image: nixos/latest
 secrets:
   - a9acb8e7-4e6a-45fd-be82-569c31b5fae7
 sources:
   - git@git.sr.ht:~graywolf/acme-client-portable
-packages:
-  - bash
-  - nix
 tasks:
-  - nix: |
-      sudo addgroup $(id -nu) nix
-
-      sudo ln -s /usr/bin/nix /usr/bin/nix-daemon
   - nixpkgs: |
       mkdir nixpkgs && cd nixpkgs
 
@@ -19,29 +12,14 @@ tasks:
       git fetch origin nixos-unstable --depth=1
       git checkout nixos-unstable
   - autoreconf: |
-      sudo nix-daemon &
-
-      # Race condition, the nix-daemon must be up and running.
-      sleep 5
-
       cd acme-client-portable
       nix-shell --pure --attr acme-client ~/nixpkgs/default.nix --run \
         'autoreconf -i'
   - configure: |
-      sudo nix-daemon &
-
-      # Race condition, the nix-daemon must be up and running.
-      sleep 5
-
       cd acme-client-portable
       nix-shell --pure --attr acme-client ~/nixpkgs/default.nix --run \
         './configure'
   - make: |
-      sudo nix-daemon &
-
-      # Race condition, the nix-daemon must be up and running.
-      sleep 5
-
       cd acme-client-portable
       nix-shell --pure --attr acme-client ~/nixpkgs/default.nix --run \
         'make'
