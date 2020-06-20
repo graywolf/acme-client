@@ -11,6 +11,16 @@ tasks:
       git remote add origin https://github.com/NixOS/nixpkgs-channels
       git fetch origin nixos-unstable --depth=1
       git checkout nixos-unstable
+
+      # Nix pkg uses release tarball. That is good thing, but it means
+      # autoreconf is not available. But we need it for build from the git.
+      pkg_file=~/nixpkgs/pkgs/tools/networking/acme-client/default.nix
+      tmp_file=/tmp/acme-client.default.nix.$$
+      sed <"$pkg_file" >"$tmp_file" \
+        -e 's~, fetchurl~, autoreconfHook, bison~' \
+        -e '/src = fetchurl {/,/};/d' \
+        -e 's~nativeBuildInputs = \[~nativeBuildInputs = [ autoreconfHook bison~'
+      mv "$tmp_file" "$pkg_file"
   - autoreconf: |
       cd acme-client-portable
       nix-shell --pure --attr acme-client ~/nixpkgs/default.nix --run \
