@@ -1,4 +1,4 @@
-/*	$Id: json.c,v 1.17 2020/05/10 17:34:07 florian Exp $ */
+/*	$Id: json.c,v 1.19 2020/06/07 13:29:52 florian Exp $ */
 /*
  * Copyright (c) 2016 Kristaps Dzonsons <kristaps@bsd.lv>
  *
@@ -463,7 +463,7 @@ json_parse_order(struct jsmnn *n, struct order *order)
 		goto err;
 
 	if (array->fields > 0) {
-		order->auths = calloc(sizeof(*order->auths), array->fields);
+		order->auths = calloc(array->fields, sizeof(*order->auths));
 		if (order->auths == NULL) {
 			warn("malloc");
 			goto err;
@@ -482,7 +482,7 @@ json_parse_order(struct jsmnn *n, struct order *order)
 	}
 	return 1;
 err:
-	json_free_order(order);	
+	json_free_order(order);
 	return 0;
 }
 
@@ -508,7 +508,7 @@ json_free_order(struct order *order)
 	for(i = 0; i < order->authsz; i++)
 		free(order->auths[i]);
 	free(order->auths);
-	
+
 	order->finalize = NULL;
 	order->auths = NULL;
 	order->authsz = 0;
