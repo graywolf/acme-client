@@ -1,4 +1,4 @@
-/*	$OpenBSD: parse.h,v 1.13 2019/06/17 12:42:52 florian Exp $ */
+/*	$OpenBSD: parse.h,v 1.14 2020/05/10 12:06:18 benno Exp $ */
 /*
  * Copyright (c) 2016 Sebastian Benoit <benno@openbsd.org>
  *
@@ -38,6 +38,7 @@ struct authority_c {
 	char				*api;
 	char				*account;
 	enum keytype			 keytype;
+	char				*contact;
 };
 
 struct domain_c {
