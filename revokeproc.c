@@ -1,4 +1,4 @@
-/*	$Id: revokeproc.c,v 1.15 2019/06/16 19:49:13 florian Exp $ */
+/*	$Id: revokeproc.c,v 1.17 2021/01/02 19:04:21 sthen Exp $ */
 /*
  * Copyright (c) 2016 Kristaps Dzonsons <kristaps@bsd.lv>
  *
@@ -209,7 +209,9 @@ revokeproc(int fd, const char *certfile, int force,
 
 	if (san == NULL) {
 		warnx("%s: does not have a SAN entry", certfile);
-		goto out;
+		if (revocate)
+			goto out;
+		force = 2;
 	}
 
 	/* An array of buckets: the number of entries found. */
@@ -237,20 +239,29 @@ revokeproc(int fd, const char *certfile, int force,
 			if (strcmp(tok, alts[j]) == 0)
 				break;
 		if (j == altsz) {
-			warnx("%s: unknown SAN entry: %s", certfile, tok);
-			goto out;
+			if (revocate) {
+				warnx("%s: unknown SAN entry: %s", certfile, tok);
+				goto out;
+			}
+			force = 2;
 		}
 		if (found[j]++) {
-			warnx("%s: duplicate SAN entry: %s", certfile, tok);
-			goto out;
+			if (revocate) {
+				warnx("%s: duplicate SAN entry: %s", certfile, tok);
+				goto out;
+			}
+			force = 2;
 		}
 	}
 
 	for (j = 0; j < altsz; j++) {
 		if (found[j])
 			continue;
-		warnx("%s: domain not listed: %s", certfile, alts[j]);
-		goto out;
+		if (revocate) {
+			warnx("%s: domain not listed: %s", certfile, alts[j]);
+			goto out;
+		}
+		force = 2;
 	}
 
 	/*
@@ -301,7 +312,8 @@ revokeproc(int fd, const char *certfile, int force,
 		    certfile, (long long)(t - time(NULL)) / 24 / 60 / 60);
 
 	if (rop == REVOKE_OK && force) {
-		warnx("%s: forcing renewal", certfile);
+		warnx("%s: %sforcing renewal", certfile,
+		    force == 2 ? "domain list changed, " : "");
 		rop = REVOKE_EXP;
 	}
 
