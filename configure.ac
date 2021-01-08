@@ -1,6 +1,6 @@
 AC_PREREQ([2.69])
 
-AC_INIT([acme-client], [1.1.0], [wolf@wolfsden.cz])
+AC_INIT([acme-client],[1.1.0],[wolf@wolfsden.cz])
 
 AC_CONFIG_SRCDIR([main.c])
 AC_CONFIG_SRCDIR([acctproc.c])
@@ -9,13 +9,12 @@ AC_CONFIG_SRCDIR([fileproc.c])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_HEADERS([config.h])
 
-AC_CANONICAL_SYSTEM
+AC_CANONICAL_TARGET
 AC_CANONICAL_HOST
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign dist-xz])
 
 AC_PROG_CC
-AC_PROG_CC_STDC
 if test "$ac_cv_prog_cc_stdc" == "no"; then
 	AC_MSG_ERROR([C compiler does not support std mode.])
 fi
