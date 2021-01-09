@@ -33,7 +33,8 @@ DESCRIPTION
 
      The options are as follows:
 
-     -F      Force certificate renewal, even if it's too soon.
+     -F      Force certificate renewal, even if it has more than 30 days va‐
+             lidity.
 
      -f configfile
              Specify an alternative configuration file.
@@ -87,4 +88,4 @@ AUTHORS
      The acme-client utility was written by Kristaps Dzonsons
      <kristaps@bsd.lv>.
 
-BSD                              May 10, 2020                              BSD
+BSD                             January 2, 2021                            BSD
