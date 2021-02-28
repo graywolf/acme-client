@@ -1,0 +1,21 @@
+/autom4te.cache
+/build-*
+/stamp-h1
+/Makefile.in
+/Makefile
+/config.h
+/config.status
+/config.log
+/aclocal.m4
+/config.h.in
+/config.h.in~
+/configure
+/configure~
+
+/acme-client
+
+# This is generated from the .y file
+/parse.c
+
+*.o
+.deps
